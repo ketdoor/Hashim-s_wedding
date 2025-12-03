@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> حفل زفاف هاشم </title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap');
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: "Tajawal", sans-serif;
+        }
+
+        #start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('1.png');
+            z-index: 100;
+        }
+
+        #start-button {
+            font-family: "Amiri", serif;
+            padding: 20px 40px;
+            font-size: 24px;
+            cursor: pointer;
+            border: 2px solid lab(78.31% 5.05 48.64);
+            border-radius: 10px;
+            background: transparent;
+            color: #d1d3d4;
+            transition: .3s;
+        }
+
+        .first-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('1.png')center/cover;
+            z-index: 10;
+            opacity: 1;
+            transition: 1s;
+        }
+
+        #splash-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 250px;
+            opacity: 0;
+            z-index: 11;
+            transition: 1s;
+        }
+
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('2.png')center/cover;
+            opacity: 1;
+            transition: 1.5s;
+            z-index: 2;
+        }
+
+        .content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            opacity: 0;
+            transition: 1.5s;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .set-date {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+        }
+
+        .set-date div {
+            text-align: center;
+        }
+
+        .number {
+            font-size: 40px;
+            font-weight: 500;
+            color: #d1d3d4;
+        }
+
+        .text {
+            color: #e6bc66;
+            font-size: 25px;
+            font-family: "Amiri", serif;
+        }
+
+        body.show-content .content {
+            opacity: 1;
+        }
+
+        .logo_2 {
+            width: 100px;
+            opacity: 0;
+        }
+
+        .fade-bottom {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeBottom 1s forwards ease;
+        }
+
+        @keyframes fadeBottom {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-opacity {
+            opacity: 0;
+            animation: fadeOpacity 1s forwards ease;
+        }
+
+        @keyframes fadeOpacity {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .seq1 {
+            animation-delay: .3s;
+        }
+
+        .seq2 {
+            animation-delay: .7s;
+        }
+
+        .seq3 {
+            animation-delay: 1.1s;
+        }
+
+        .seq4 {
+            animation-delay: 1.5s;
+        }
+
+        .seq5 {
+            animation-delay: 2s;
+        }
+
+        .seq6 {
+            animation-delay: 2.4s;
+        }
+
+        /* توقيت ظهور الأرقام */
+        .time-seq {
+            opacity: 0;
+            animation: fadeOpacity 1s forwards ease;
+        }
+
+        .t1 {
+            animation-delay: 2.8s;
+        }
+
+        .t2 {
+            animation-delay: 3.1s;
+        }
+
+        .t3 {
+            animation-delay: 3.4s;
+        }
+
+        .t4 {
+            animation-delay: 3.7s;
+        }
+
+        /* الصورة الأخيرة */
+        .last-img {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeBottom 1s forwards ease;
+            animation-delay: 4.2s;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="start-screen"><button id="start-button">اضغط لفتح الدعوة</button></div>
+    <audio style="position:fixed;top:0;left:0;width:0%;height:0%;" id="bg-music" src="Gramophone.mp4" loop
+        muted></audio>
+    <div class="first-screen" id="first-screen"></div>
+    <img src="logo.png" id="splash-logo">
+    <div class="background"></div>
+    <div class="content" id="content-block">
+        <div>
+            <h1 id="anim-h1">تَتَشَرَّف</h1>
+            <h3 id="anim-h3-1">عائلة السيد فراس الميالي المحترمة</h3>
+            <h3 id="anim-h3-2">بدعوتكم لمشاركتها فرحتها</h3>
+            <h3 id="anim-h3-3">بمناسبة زفاف نجلها</h3>
+        </div>
+        <img src="logo_2.png" class="logo_2" id="logo2">
+        <div class="set-date">
+            <div>
+                <div class="number" id="days"></div>
+                <div class="text" id="text_days">يوم</div>
+            </div>
+            <div>
+                <div class="number" id="hours"></div>
+                <div class="text" id="text_hours">ساعة</div>
+            </div>
+            <div>
+                <div class="number" id="minutes"></div>
+                <div class="text" id="text_minutes">دقيقة</div>
+            </div>
+            <div>
+                <div class="number" id="seconds"></div>
+                <div class="text" id="text_seconds">ثانية</div>
+            </div>
+        </div>
+        <div>
+            <a href="https://maps.app.goo.gl/jBstoo3s7wQrKFyh9?g_st=ipc" target="_blank" style="display:inline-block;width:290px;height:150px;"><img src="location.png"
+                    style="width:290px;" id="last-img"></a>
+        </div>
+    </div>
+    <script>
+        const startButton = document.getElementById('start-button');
+        const startScreen = document.getElementById('start-screen');
+        const music = document.getElementById('bg-music');
+        startButton.onclick = () => {
+            music.muted = false; music.play(); startScreen.style.display = 'none'; document.getElementById("splash-logo").style.opacity = "1";
+            setTimeout(() => {
+                document.getElementById("splash-logo").style.opacity = "0";
+                setTimeout(() => {
+                    document.getElementById("first-screen").style.opacity = "0";
+                    setTimeout(() => { document.body.classList.add("show-content"); runSequence(); }, 1200);
+                }, 1000);
+            }, 2500);
+        };
+        function runSequence() {
+            document.getElementById("anim-h1").classList.add("fade-bottom", "seq1");
+            document.getElementById("anim-h3-1").classList.add("fade-bottom", "seq2");
+            document.getElementById("anim-h3-2").classList.add("fade-bottom", "seq3");
+            document.getElementById("anim-h3-3").classList.add("fade-bottom", "seq4");
+            document.getElementById("logo2").classList.add("fade-opacity", "seq5");
+            /* الوقت */
+            document.getElementById("days").classList.add("time-seq", "t1");
+            document.getElementById("hours").classList.add("time-seq", "t2");
+            document.getElementById("minutes").classList.add("time-seq", "t3");
+            document.getElementById("seconds").classList.add("time-seq", "t4");
+            document.getElementById("text_days").classList.add("time-seq", "t1");
+            document.getElementById("text_hours").classList.add("time-seq", "t2");
+            document.getElementById("text_minutes").classList.add("time-seq", "t3");
+            document.getElementById("text_seconds").classList.add("time-seq", "t4");
+            /* الصورة الأخيرة */
+            document.getElementById("last-img").classList.add("last-img");
+        }
+        /* العداد */
+        let targetDate = new Date("Dec 20, 2025 18:00:00").getTime();
+        setInterval(() => {
+            let now = new Date().getTime(); let diff = targetDate - now;
+            let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days;
+            document.getElementById("hours").innerText = hours;
+            document.getElementById("minutes").innerText = minutes;
+            document.getElementById("seconds").innerText = seconds;
+        }, 1000);
+        setTimeout(() => {
+            const fs = document.querySelector('.first-screen');
+            fs.style.zIndex = "0";
+        }, 7000);
+    </script>
+</body>
+
+</html>
