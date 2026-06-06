@@ -284,6 +284,7 @@
         }
         /* العداد */
         let targetDate = new Date("Dec 20, 2027 18:00:00").getTime();
+        if(targetDate>=0){
         setInterval(() => {
             let now = new Date().getTime(); let diff = targetDate - now;
             let days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -300,6 +301,12 @@
             const fs = document.querySelector('.first-screen');
             fs.style.zIndex = "0";
         }, 7000);
+        }else{
+            document.getElementById("days").innerText = 'تم الزفاف';
+            document.getElementById("hours").innerText = '';
+            document.getElementById("minutes").innerText = '';
+            document.getElementById("seconds").innerText = '';
+        }
     </script>
 </body>
 
