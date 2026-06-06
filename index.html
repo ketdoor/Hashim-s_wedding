@@ -284,8 +284,8 @@
         }
         /* العداد */
         let targetDate = new Date("Oct 20, 2025 18:00:00").getTime();
-        consle.log(targetDate);
-        if(targetDate>=0){
+        let now = new Date().getTime(); let diff = targetDate - now;
+        if(diff>=0){
         setInterval(() => {
             let now = new Date().getTime(); let diff = targetDate - now;
             let days = Math.floor(diff / (1000 * 60 * 60 * 24));
